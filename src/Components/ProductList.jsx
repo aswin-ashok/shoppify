@@ -14,7 +14,7 @@ const ProductList = ({ product, cart=false }) => {
                 <h2 className="truncate">{product.title}</h2>
                 <div className="flex justify-between items-center">
                     <p className="absolute top-1 right-1">{product.discountPercentage}%</p>
-                    <p className={'${product.rating < 2 ? "text-red-600" : product.rating >= 2 && product.rating < 4 ? "text-yellow-400"}'}>{product.rating} <i className="fa fa-star" /></p>
+                    <p className={'${product.rating < 2 ? "text-red-600" : product.rating >= 2 && product.rating < 4 ? "text-yellow-400" : "text-green-600"}'}>{product.rating} <i className="fa fa-star" /></p>
                     <div>
                         <p>{product.price}</p>
                         <p>{(product.price - (product.price * product.discountPercentage / 100)).toFixed(2)}</p>
