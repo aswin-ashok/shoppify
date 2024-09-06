@@ -1,9 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 let mounted = false
-
 const FormVali = () => {
-
     const [formData, setFormData] = useState({
         name: "",
         username: "",
@@ -22,9 +20,56 @@ const FormVali = () => {
     const handleValidation = values  => {
         if (values.name == ""){
             return setError({...error, name: "Name is required"})
-        }
-        if (values.name.length < 4){
+        }else if (values.name.length < 4){
             return setError({...error, name: "Min 4 char required"})
+        }
+        setError({
+            name: "",
+            username: "",
+            email: "",
+            password: "",
+            confirm_password: ""
+        })
+
+        if (values.username == ""){
+            return setError({...error, username: "Username is required"})
+        }
+        setError({
+            name: "",
+            username: "",
+            email: "",
+            password: "",
+            confirm_password: ""
+        })
+
+        if (values.email == ""){
+            return setError({...error, email: "Email is required"})
+        }else if (!/\S+@\S+\.\S+/.test(values.email)){
+            return setError({...error, email: "Invalid email"})
+        }
+        setError({
+            name: "",
+            username: "",
+            email: "",
+            password: "",
+            confirm_password: ""
+        })
+
+        if (values.password == ""){
+            return setError({...error, password: "Password is required"})
+        }else if (values.password.length < 6){
+            return setError({...error, password: "Password must be at least 6 characters"})
+        }
+        setError({
+            name: "",
+            username: "",
+            email: "",
+            password: "",
+            confirm_password: ""
+        })
+
+        if (values.confirm_password !== values.password){
+            return setError({...error, confirm_password: "Passwords do not match"})
         }
         setError({
             name: "",
@@ -65,10 +110,20 @@ const FormVali = () => {
   return <div className='w-100 d-flex justify-content-center mt-5'>
     <form onSubmit={handleSubmit} className='d-flex flex-column w-25 gap-2 bg-white p-4'>
         <input onChange={handleChange} value={formData.name} className='p-2 border' style={{outline: 0}} type='text' name='name' placeholder='Enter Name' />
+        <span className='text-danger'><small>{error.name}</small></span>
+
         <input onChange={handleChange} value={formData.username} className='p-2 border' style={{outline: 0}} type='text' name='username' placeholder='Enter Username' />
+        <span className='text-danger'><small>{error.username}</small></span>
+
         <input onChange={handleChange} value={formData.email} className='p-2 border' style={{outline: 0}} type='text' name='email' placeholder='Enter Email' />
+        <span className='text-danger'><small>{error.email}</small></span>
+
         <input onChange={handleChange} value={formData.password} className='p-2 border' style={{outline: 0}} type='password' name='password' placeholder='Enter Password' />
+        <span className='text-danger'><small>{error.password}</small></span>
+
         <input onChange={handleChange} value={formData.confirm_password} className='p-2 border' style={{outline: 0}} type='password' name='confirm_password' placeholder='Enter Confirm Password' />
+        <span className='text-danger'><small>{error.confirm_password}</small></span>
+
         <button type='submit' className='p-2 bg-success text-light mt-3'>Create Account</button>
     </form>
   </div>
