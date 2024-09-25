@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
-import TopNav from "../Components/TopNav";
 import { productList } from "../Constants/products"
 import ProductList from "../Components/ProductList";
 import { useCart } from "../Hooks/Hooks";
+import TopNav from "../Components/TopNav";
 
 const ShopPage = () => {
 

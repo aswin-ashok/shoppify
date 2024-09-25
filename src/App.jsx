@@ -5,17 +5,32 @@ import FormVali from "./Components/FormVali";
 import Example from "./Components/Example";
 import ProductsFetch from "./Components/ProductsFetch";
 import TopNav from "./Components/TopNav";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PageNotFount from "./Pages/PageNotFount";
+import A from "./Pages/A";
+import B from "./Pages/B";
+import Formik from "./Components/Formik";
+
 
 const App = () => {
   return (
-    <Fragment>
-      {/* <ShopPage /> */}
-      {/* <Effect /> */}
-      {/* <FormVali /> */}
-      {/* <Example /> */}
-      <TopNav />
-      <ProductsFetch />
-    </Fragment>
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path="/shop" Component={ShopPage}/>
+        <Route path="/first" Component={A}/>
+        <Route path="/second" Component={B}/> */}
+
+        <Route path="/">
+          <Route path="" Component={Formik} />
+          <Route path="">
+              <Route path="first" Component={A}/>
+              <Route path="second" Component={B}/>
+          </Route>
+        </Route>
+
+        <Route path="*" element={<PageNotFount />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
